@@ -1,61 +1,60 @@
 import React from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
+import { ProjectInfo } from "../utils/types";
 
 interface Props {
-  title: string;
-  subtitle?: string;
+  projectInfo: ProjectInfo;
   size?: "small" | "medium" | "large" | "full";
+  onClick: Function;
 }
 
-const cardVariants = {
-  shown: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.75,
-    },
-  },
-  hidden: {
-    opacity: 0,
-    y: 50,
-  },
-};
-
 const Card: React.FunctionComponent<Props> = (props) => {
-  const { ref, inView } = useInView();
-  const controls = useAnimation();
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const [visibility, setVisibility] = React.useState(true);
+  const projectInfo = props.projectInfo;
 
-  React.useEffect(() => {
-    if (inView) {
-      controls.start("shown");
+  const handleClick = () => {
+    if (cardRef.current !== null) {
+      const scrollPosition = window.pageYOffset;
+      props.onClick(
+        cardRef.current.offsetTop - scrollPosition,
+        cardRef.current.offsetLeft,
+        cardRef.current.offsetHeight,
+        cardRef.current.offsetWidth,
+        projectInfo.img
+      );
+      setVisibility(false);
     }
-  }, [inView, controls]);
+  };
 
   return (
-    <motion.div
-      className={clsx("rounded-2xl shadow-md h-5/6 relative overflow-hidden", {
-        "w-32": props.size === "small",
-        "w-36": props.size === "medium",
-        "w-40": props.size === "large",
-        "w-full": props.size === "full" || props.size == null,
-      })}
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={cardVariants}
+    <div
+      ref={cardRef}
+      onClick={() => handleClick()}
+      className={clsx(
+        "rounded-2xl shadow-md h-full relative overflow-hidden flex-0",
+        {
+          "w-52": props.size === "small",
+          "w-72": props.size === "medium",
+          "w-96": props.size === "large",
+          "w-full": props.size === "full" || props.size == null,
+          invisible: !visibility,
+        }
+      )}
     >
-      <img
-        className="w-full h-full object-cover"
-        alt="poster"
-        src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=3289&q=80"
-      />
-      <div className="flex flex-col absolute left-10 bottom-10 text-white prose prose-xl font-sans">
-        <span className="font-bold">{props.title}</span>
-        {props.subtitle !== null ? <span>{props.subtitle}</span> : <></>}
-      </div>
-    </motion.div>
+      <Link to={projectInfo.link}>
+        <img
+          className="w-full h-full object-cover"
+          alt="poster"
+          src={projectInfo.img}
+        />
+        <div className="flex flex-col absolute left-10 bottom-10 text-white prose prose-xl font-sans">
+          <span className="font-bold">{projectInfo.title}</span>
+          <span>{projectInfo.subtitle}</span>
+        </div>
+      </Link>
+    </div>
   );
 };
 

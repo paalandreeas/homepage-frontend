@@ -11,27 +11,29 @@ const Navbar: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   return (
-    <nav className="bg-opacity-90 bg-white dark:bg-gray-800 dark:bg-opacity-90 text-black dark:text-white shadow-md transition-colors duration-500 fixed w-screen z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24">
-          <div>MORHOLMEN</div>
-          <div className="flex justify-between gap-8 md:gap-16 items-center">
-            <Toggle
-              size="medium"
-              onToggle={() => dispatch(toggleTheme())}
-              toggled={theme.dark}
-            />
-            <button
-              onClick={() => {
-                dispatch(setMenu(!menu.open));
-              }}
-            >
-              MENU
-            </button>
+    <>
+      <nav className="bg-opacity-90 bg-gray-100 dark:bg-gray-800 dark:bg-opacity-90 text-black dark:text-white shadow-md transition-colors duration-500 fixed w-screen z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            <div>MORHOLMEN</div>
+            <div className="flex justify-between gap-8 md:gap-16 items-center">
+              <Toggle
+                size="medium"
+                onToggle={() => dispatch(toggleTheme())}
+                toggled={theme.dark}
+              />
+              <button
+                onClick={() => {
+                  dispatch(setMenu(!menu.open));
+                }}
+              >
+                MENU
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

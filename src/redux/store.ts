@@ -8,6 +8,7 @@ import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["menu"],
 };
 
 const persistedReducer = persistReducer<any, any>(persistConfig, rootReducer);
