@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { ProjectInfo } from "../utils/types";
+import { isMobile } from "react-device-detect";
 
 interface Props {
   projectInfo: ProjectInfo;
@@ -24,7 +25,9 @@ const Card: React.FunctionComponent<Props> = (props) => {
         cardRef.current.offsetWidth,
         projectInfo.img
       );
-      setVisibility(false);
+      if (!isMobile) {
+        setVisibility(false);
+      }
     }
   };
 

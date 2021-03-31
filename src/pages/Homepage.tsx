@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import disableScroll from "disable-scroll";
 import poster from "../images/poster.webp";
 import { projects } from "../utils/projects";
+import { isMobile } from "react-device-detect";
 
 const Homepage: React.FunctionComponent = () => {
   const controls = useAnimation();
@@ -49,36 +50,33 @@ const Homepage: React.FunctionComponent = () => {
   return (
     <>
       {/* OVERLAY START */}
-      <motion.div
-        ref={overlayRef}
-        onAnimationStart={() => disableScroll.on()}
-        onAnimationComplete={() => {
-          window.scrollTo(0, 0);
-          disableScroll.off();
-        }}
-        variants={coverImgVariants}
-        animate={controls}
-        exit="exit"
-        transition={hardEase}
-        className={clsx(
-          "fixed w-full h-52 md:h-80 z-10 rounded-2xl overflow-hidden",
-          {
-            invisible: !transitioning,
-          }
-        )}
-      >
-        <img
-          className="w-full h-full object-cover"
-          alt="poster"
-          src={coverImg}
-        />
-      </motion.div>
+      {!isMobile && (
+        <motion.div
+          ref={overlayRef}
+          variants={coverImgVariants}
+          animate={controls}
+          exit="exit"
+          transition={hardEase}
+          className={clsx(
+            "fixed w-full h-52 md:h-80 z-10 rounded-2xl overflow-hidden",
+            {
+              invisible: !transitioning,
+            }
+          )}
+        >
+          <img
+            className="w-full h-full object-cover"
+            alt="poster"
+            src={coverImg}
+          />
+        </motion.div>
+      )}
       {/* OVERLAY END */}
 
       {/* MAIN START */}
       <motion.div
-        animate="animate"
-        initial="initial"
+        onAnimationStart={() => disableScroll.on()}
+        onAnimationComplete={() => disableScroll.off()}
         exit={{ opacity: 0 }}
         transition={hardEase}
       >
@@ -98,8 +96,8 @@ const Homepage: React.FunctionComponent = () => {
 
         {/* PROJECTS START */}
         <div className="w-4/5 mx-auto flex flex-col items-center">
-          <div className="w-full max-w-6xl my-32  ">
-            <h1 className="text-black dark:text-white transition-colors duration-500 font-sans font-extrabold text-6xl">
+          <div className="w-full max-w-6xl my-16 sm:my-20 md:my-24 lg:my-32  ">
+            <h1 className="text-black dark:text-white transition-colors duration-500 font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
               Prosjekter
             </h1>
           </div>

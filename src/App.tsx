@@ -24,7 +24,13 @@ const App: React.FunctionComponent = () => {
         <Menu />
         <Route
           render={({ location }) => (
-            <AnimatePresence exitBeforeEnter initial={false}>
+            <AnimatePresence
+              onExitComplete={() => {
+                window.scrollTo(0, 0);
+              }}
+              exitBeforeEnter
+              initial={false}
+            >
               <Switch location={location} key={location.pathname}>
                 <Route exact path="/" component={Homepage} />
                 {projects.map((project) => {

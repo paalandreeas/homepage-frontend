@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { easyEase } from "../utils/transition";
 import { ProjectInfo } from "../utils/types";
 
@@ -19,7 +20,7 @@ const paragraphVariants = {
   animate: {
     y: 0,
     opacity: 1,
-    transition: { ...easyEase },
+    transition: easyEase,
   },
 };
 
@@ -30,6 +31,8 @@ const Project: React.FunctionComponent<Props> = (props) => {
     <motion.div animate="animate" initial="initial" exit="exit">
       <div>
         <motion.img
+          initial={isMobile ? { opacity: 0 } : { opacity: 1 }}
+          animate={{ opacity: 1, transition: { duration: 1 } }}
           className="w-full h-52 md:h-80 object-cover"
           alt={projectInfo.title + " poster"}
           src={projectInfo.img}
@@ -38,7 +41,7 @@ const Project: React.FunctionComponent<Props> = (props) => {
       <div className="max-w-6xl mx-auto px-8">
         <motion.article
           variants={articleVariants}
-          className="prose prose-lg prose-yellow mx-auto py-12 dark:text-white transition-colors duration-500"
+          className="prose lg:prose-lg mx-auto py-12 dark:text-white transition-colors duration-500"
         >
           <motion.h1
             variants={paragraphVariants}
