@@ -1,9 +1,10 @@
 import { motion, useAnimation } from "framer-motion";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { rootState } from "../redux/rootReducer";
 import CustomLink from "./CustomLink";
 import disableScroll from "disable-scroll";
+import { setMenu } from "../redux/menu/menuActions";
 
 const menuVariants = {
   open: {
@@ -48,6 +49,7 @@ const Menu: React.FunctionComponent = () => {
   const menuControls = useAnimation();
   const listControls = useAnimation();
   const menu = useSelector((state: rootState) => state.menu);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     if (menu.open) {
@@ -62,33 +64,40 @@ const Menu: React.FunctionComponent = () => {
   }, [menu.open, menuControls, listControls]);
 
   return (
-    <motion.div
-      className="fixed w-full h-full bg-gray-100 dark:bg-gray-800 transition-colors duration-500 flex items-center z-10"
-      initial="closed"
-      animate={menuControls}
-      variants={menuVariants}
-    >
-      <div className="h-24" />
-      <motion.ul
-        variants={listVariants}
-        initial="hidden"
-        animate={listControls}
-        className="list-none flex flex-col mx-auto items-center gap-16 font-sans text-4xl font-bold text-black dark:text-white"
+    <>
+      <motion.div
+        className="fixed w-full h-screen bg-gray-100 dark:bg-gray-800 transition-colors duration-500 z-10 flex items-center"
+        initial="closed"
+        animate={menuControls}
+        variants={menuVariants}
       >
-        <motion.li variants={listItemVariants}>
-          <CustomLink>1</CustomLink>
-        </motion.li>
-        <motion.li variants={listItemVariants}>
-          <CustomLink>2</CustomLink>
-        </motion.li>
-        <motion.li variants={listItemVariants}>
-          <CustomLink>3</CustomLink>
-        </motion.li>
-        <motion.li variants={listItemVariants}>
-          <CustomLink>4</CustomLink>
-        </motion.li>
-      </motion.ul>
-    </motion.div>
+        <motion.ul
+          variants={listVariants}
+          initial="hidden"
+          animate={listControls}
+          className="list-none flex flex-col mx-auto items-center justify-around font-sans text-4xl font-bold text-black dark:text-white h-4/6 mt-20 md:mt-24"
+        >
+          <motion.li variants={listItemVariants}>
+            <CustomLink
+              to="/#prosjekter"
+              onClick={() => dispatch(setMenu(false))}
+            >
+              Prosjekter
+            </CustomLink>
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            <CustomLink to="/#om_meg" onClick={() => dispatch(setMenu(false))}>
+              Om meg
+            </CustomLink>
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            <CustomLink to="/#kontakt" onClick={() => dispatch(setMenu(false))}>
+              Kontakt
+            </CustomLink>
+          </motion.li>
+        </motion.ul>
+      </motion.div>
+    </>
   );
 };
 

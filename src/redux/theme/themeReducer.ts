@@ -1,7 +1,7 @@
 import { Theme, ThemeActionTypes, TOGGLE_THEME } from "./themeTypes";
 
 const initialState: Theme = {
-  dark: false,
+  dark: true,
 };
 
 const themeReducer = (

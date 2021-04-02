@@ -4,9 +4,13 @@ import React from "react";
 import { hardEase } from "../utils/transition";
 import Card from "../components/Card";
 import disableScroll from "disable-scroll";
-import poster from "../images/poster.webp";
+import poster from "../images/image2.webp";
 import { projects } from "../utils/projects";
 import { isMobile } from "react-device-detect";
+import CustomTitle from "../components/CustomTitle";
+import MailIcon from "@material-ui/icons/Mail";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 const Homepage: React.FunctionComponent = () => {
   const controls = useAnimation();
@@ -43,9 +47,12 @@ const Homepage: React.FunctionComponent = () => {
       width: width + "px",
     };
     controls.set("animate");
-    setTransitioning(true);
     setCoverImg(img);
   };
+
+  React.useEffect(() => {
+    transitioning ? disableScroll.on() : disableScroll.off();
+  }, [transitioning]);
 
   return (
     <>
@@ -75,8 +82,12 @@ const Homepage: React.FunctionComponent = () => {
 
       {/* MAIN START */}
       <motion.div
-        onAnimationStart={() => disableScroll.on()}
-        onAnimationComplete={() => disableScroll.off()}
+        onAnimationStart={() => {
+          setTransitioning(true);
+        }}
+        onAnimationComplete={() => {
+          setTransitioning(false);
+        }}
         exit={{ opacity: 0 }}
         transition={hardEase}
       >
@@ -87,7 +98,7 @@ const Homepage: React.FunctionComponent = () => {
             alt="Poster"
             src={poster}
           />
-          <div className="flex flex-col items-start md:items-end gap-2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl absolute left-10 md:right-10 top-1/2 font-sans">
+          <div className="flex flex-col items-start md:items-end space-y-2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl absolute left-10 md:right-10 top-1/2 font-sans">
             <span className="font-black">PÅL ANDREAS MORHOLMEN</span>
             <span className="font-bold">UTVIKLER</span>
           </div>
@@ -96,12 +107,10 @@ const Homepage: React.FunctionComponent = () => {
 
         {/* PROJECTS START */}
         <div className="w-4/5 mx-auto flex flex-col items-center">
-          <div className="w-full max-w-6xl my-16 sm:my-20 md:my-24 lg:my-32  ">
-            <h1 className="text-black dark:text-white transition-colors duration-500 font-sans font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-              Prosjekter
-            </h1>
-          </div>
-          <div className="max-w-6xl mx-auto flex flex-col gap-12">
+          <CustomTitle id="prosjekter" size="large">
+            Prosjekter
+          </CustomTitle>
+          <div className="max-w-6xl mx-auto flex flex-col space-y-12">
             {projects.map((project) => {
               return (
                 <Card
@@ -112,8 +121,60 @@ const Homepage: React.FunctionComponent = () => {
               );
             })}
           </div>
+          <CustomTitle id="om_meg" size="medium">
+            Om meg
+          </CustomTitle>
+          <div className="w-full max-w-6xl">
+            <article className="prose lg:prose-lg dark:text-white transition-colors duration-500">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tenetur, voluptatum. Corporis reprehenderit excepturi debitis
+                minima. Fuga nisi maxime obcaecati tempore praesentium, labore
+                voluptatum aliquid ratione alias qui explicabo, dolores
+                temporibus.
+              </p>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tenetur, voluptatum. Corporis reprehenderit excepturi debitis
+                minima. Fuga nisi maxime obcaecati tempore praesentium, labore
+                voluptatum aliquid ratione alias qui explicabo, dolores
+                temporibus.
+              </p>
+            </article>
+          </div>
+          <CustomTitle id="kontakt" size="medium">
+            Kontakt
+          </CustomTitle>
+          <div className="w-full max-w-6xl">
+            <article className="prose lg:prose-lg dark:text-white transition-colors duration-500">
+              <p>
+                Hvis du ønsker å ta kontakt er det bare å sende en mail eller en
+                melding på LinkedIn!
+              </p>
+              <div className="flex space-x-3">
+                <button onClick={() => window.open("mailto:pamorho@gmail.com")}>
+                  <MailIcon fontSize="large" />
+                </button>
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/p%C3%A5l-andreas-morholmen-93bbb0198/"
+                    )
+                  }
+                >
+                  <LinkedInIcon fontSize="large" />
+                </button>
+                <button
+                  onClick={() => window.open("https://github.com/paalandreeas")}
+                >
+                  <GitHubIcon fontSize="large" />
+                </button>
+              </div>
+            </article>
+          </div>
         </div>
         {/* PROJECTS END */}
+        <div className="h-20 md:h-24" />
       </motion.div>
       {/* MAIN END */}
     </>

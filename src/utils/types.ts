@@ -4,4 +4,6 @@ export interface ProjectInfo {
   img: string;
   paragraphs: string[];
   link: string;
+  github?: string;
+  demo?: string;
 }
