@@ -78,16 +78,16 @@ const Menu: React.FunctionComponent = () => {
           className="list-none flex flex-col mx-auto items-center justify-around font-sans text-4xl font-bold text-black dark:text-white h-4/6 mt-20 md:mt-24"
         >
           <motion.li variants={listItemVariants}>
+            <CustomLink to="/#om_meg" onClick={() => dispatch(setMenu(false))}>
+              Om meg
+            </CustomLink>
+          </motion.li>
+          <motion.li variants={listItemVariants}>
             <CustomLink
               to="/#prosjekter"
               onClick={() => dispatch(setMenu(false))}
             >
               Prosjekter
-            </CustomLink>
-          </motion.li>
-          <motion.li variants={listItemVariants}>
-            <CustomLink to="/#om_meg" onClick={() => dispatch(setMenu(false))}>
-              Om meg
             </CustomLink>
           </motion.li>
           <motion.li variants={listItemVariants}>

@@ -4,7 +4,7 @@ import React from "react";
 import { hardEase } from "../utils/transition";
 import Card from "../components/Card";
 import disableScroll from "disable-scroll";
-import poster from "../images/image2.webp";
+import frontpage_poster from "../images/frontpage_poster.png";
 import { projects } from "../utils/projects";
 import { isMobile } from "react-device-detect";
 import CustomTitle from "../components/CustomTitle";
@@ -96,7 +96,7 @@ const Homepage: React.FunctionComponent = () => {
           <img
             className="w-full h-full object-cover"
             alt="Poster"
-            src={poster}
+            src={frontpage_poster}
           />
           <div className="flex flex-col items-start md:items-end space-y-2 text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl absolute left-10 md:right-10 top-1/2 font-sans">
             <span className="font-black">PÅL ANDREAS MORHOLMEN</span>
@@ -105,9 +105,30 @@ const Homepage: React.FunctionComponent = () => {
         </div>
         {/* INTROPOSTER END */}
 
-        {/* PROJECTS START */}
+        {/* CONTENT START */}
         <div className="w-4/5 mx-auto flex flex-col items-center">
-          <CustomTitle id="prosjekter" size="large">
+          <CustomTitle id="om_meg" size="medium">
+            Om meg
+          </CustomTitle>
+          <div className="w-full max-w-6xl">
+            <article className="prose lg:prose-lg dark:text-white transition-colors duration-500">
+              <p>
+                Hei! Jeg er Pål Andreas, en 21 år gammel student på tredjeåret
+                på bachelor i informatikk ved NTNU.
+              </p>
+              <p>
+                Denne siden inneholder noen prosjekter jeg har jobbet på i løpet
+                av studietiden min. Jeg ser på meg selv som en full stack
+                utvikler med kompetanse innenfor TypeScript, React, Node,
+                Express, CSS, MongoDB, MySQL, Python, Java og C.
+              </p>
+              <p>
+                Siden er fortsatt under utvikling. Den er hovedsaklig testet i
+                Chrome på MacOS.
+              </p>
+            </article>
+          </div>
+          <CustomTitle id="prosjekter" size="medium">
             Prosjekter
           </CustomTitle>
           <div className="max-w-6xl mx-auto flex flex-col space-y-12">
@@ -120,27 +141,6 @@ const Homepage: React.FunctionComponent = () => {
                 />
               );
             })}
-          </div>
-          <CustomTitle id="om_meg" size="medium">
-            Om meg
-          </CustomTitle>
-          <div className="w-full max-w-6xl">
-            <article className="prose lg:prose-lg dark:text-white transition-colors duration-500">
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur, voluptatum. Corporis reprehenderit excepturi debitis
-                minima. Fuga nisi maxime obcaecati tempore praesentium, labore
-                voluptatum aliquid ratione alias qui explicabo, dolores
-                temporibus.
-              </p>
-              <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tenetur, voluptatum. Corporis reprehenderit excepturi debitis
-                minima. Fuga nisi maxime obcaecati tempore praesentium, labore
-                voluptatum aliquid ratione alias qui explicabo, dolores
-                temporibus.
-              </p>
-            </article>
           </div>
           <CustomTitle id="kontakt" size="medium">
             Kontakt
@@ -173,7 +173,7 @@ const Homepage: React.FunctionComponent = () => {
             </article>
           </div>
         </div>
-        {/* PROJECTS END */}
+        {/* CONTENT END */}
         <div className="h-20 md:h-24" />
       </motion.div>
       {/* MAIN END */}

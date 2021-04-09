@@ -30,16 +30,16 @@ const Navbar: React.FunctionComponent = () => {
               /> */}
             <div className="hidden md:flex justify-around w-72">
               <CustomLink
-                to="/#prosjekter"
-                onClick={() => dispatch(setMenu(false))}
-              >
-                Prosjekter
-              </CustomLink>
-              <CustomLink
                 to="/#om_meg"
                 onClick={() => dispatch(setMenu(false))}
               >
                 Om meg
+              </CustomLink>
+              <CustomLink
+                to="/#prosjekter"
+                onClick={() => dispatch(setMenu(false))}
+              >
+                Prosjekter
               </CustomLink>
               <CustomLink
                 to="/#kontakt"

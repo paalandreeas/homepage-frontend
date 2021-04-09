@@ -4,7 +4,7 @@ import { isMobile } from "react-device-detect";
 import { easyEase } from "../utils/transition";
 import { ProjectInfo } from "../utils/types";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import LinkIcon from "@material-ui/icons/Link";
+import LaunchIcon from "@material-ui/icons/Launch";
 
 interface Props {
   projectInfo: ProjectInfo;
@@ -63,7 +63,7 @@ const Project: React.FunctionComponent<Props> = (props) => {
               )}
               {projectInfo.demo && (
                 <button onClick={() => window.open(projectInfo.demo)}>
-                  <LinkIcon fontSize="large" />
+                  <LaunchIcon fontSize="large" />
                 </button>
               )}
             </motion.div>
