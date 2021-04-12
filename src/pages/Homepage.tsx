@@ -152,13 +152,14 @@ const Homepage: React.FunctionComponent = () => {
                 melding på LinkedIn!
               </p>
               <div className="flex space-x-3">
+                {/* Icons wouldn't render in anchor tag. tmp solution with button */}
                 <button onClick={() => window.open("mailto:pamorho@gmail.com")}>
                   <MailIcon fontSize="large" />
                 </button>
                 <button
                   onClick={() =>
                     window.open(
-                      "https://www.linkedin.com/in/p%C3%A5l-andreas-morholmen-93bbb0198/"
+                      "https://www.linkedin.com/in/paal-andreas-morholmen/"
                     )
                   }
                 >
