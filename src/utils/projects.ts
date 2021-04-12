@@ -14,7 +14,7 @@ export const projects: ProjectInfo[] = [
     github: "https://github.com/paalandreeas/IT2810-frontend",
     demo: "http://it2810.morholmen.no/",
     paragraphs: [
-      "Dette prosjektet ble laget som en del av faget IT2810 Webutvikling sammen med to venner. Det er en prototype på en filmdatabase med fokus på pagination på større mengder data, sortering, filtrering og brukergenerert data. Frontenden av prosjektet ble laget med React, TypeScript, Redux, Axios og Material UI. Backenden av prosjektet ble laget med Node, Express, Mongoose, Passport med JWT. Databasen kjører MongoDB for en full MERN stack. Testing ble gjort med Jest, Cypress og Mocha.",
+      "Dette prosjektet ble laget som en del av faget IT2810 Webutvikling sammen med to venner. Det er en prototype på en filmdatabase med fokus på pagination på større mengder data, sortering, filtrering og brukergenerert data. Frontenden av prosjektet ble laget med React, TypeScript, Redux, Axios og Material UI. Backenden av prosjektet ble laget med Node, Express, Mongoose, Passport med JWT. Databasen kjører MongoDB for en full MERN stack. Testing ble gjort med Jest, Cypress og Mocha. Frontend og backend hostes med AWS.",
     ],
   },
   {
